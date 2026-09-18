@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#244a8f" />
+  <title>MedLembra | Sua rotina de saúde</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section id="login-screen" class="screen auth-screen active" aria-labelledby="login-title">
+      <div class="auth-mark">◈</div>
+      <p class="brand-name">MedLembra</p>
+      <p class="brand-tagline">Bem-vindo de volta!</p>
+      <p class="muted center">Vamos cuidar da sua saúde juntos.</p>
+      <form id="login-form" class="form-stack">
+        <label>CPF ou e-mail<input name="contact" type="text" placeholder="Ex: 123.456.789-00" aria-label="CPF ou e-mail" required /></label>
+        <label>Senha<div class="password-field"><input name="password" type="password" placeholder="Digite sua senha" aria-label="Senha" required /><button type="button" class="input-action" aria-label="Mostrar senha">◉</button></div></label>
+        <button class="primary-button" type="submit">Entrar</button>
+      </form>
+      <p id="login-feedback" class="form-feedback" role="alert" aria-live="assertive"></p>
+      <button class="text-button" type="button">Esqueceu a senha?</button>
+      <div class="divider"><span>ou</span></div>
+      <button class="outline-button" type="button" data-screen="signup-screen">Criar nova conta</button>
+    </section>
+
+    <section id="signup-screen" class="screen auth-screen" aria-labelledby="signup-title">
+      <button class="back-button auth-back" data-screen="login-screen" aria-label="Voltar">‹</button>
+      <div class="auth-mark">◈</div>
+      <p class="brand-name" id="signup-title">Criar sua conta</p>
+      <p class="muted center">Salve seus dados para personalizar sua rotina.</p>
+      <form id="signup-form" class="form-stack">
+        <label>Nome completo<input name="name" required placeholder="Ex: Maria da Silva" /></label>
+        <label>CPF ou e-mail<input name="contact" required placeholder="Ex: maria@email.com" /></label>
+        <label>Senha<input name="password" type="password" required minlength="4" placeholder="Crie uma senha" /></label>
+        <label>Data de nascimento<input name="birthDate" type="date" required /></label>
+        <button class="primary-button" type="submit">Criar conta</button>
+      </form>
+      <p id="signup-feedback" class="form-feedback" role="alert" aria-live="assertive"></p>
+      <button class="text-button" type="button" data-screen="login-screen">Já tenho uma conta</button>
+    </section>
+
+    <section id="home-screen" class="screen app-screen" aria-labelledby="home-title">
+      <header class="topbar">
+        <div><p class="eyebrow">Olá,</p><h1 id="home-title">Olá, Dona Maria</h1><p id="current-date" class="muted">Data atual</p></div>
+        <div class="header-actions"><button class="settings-button" data-screen="settings-screen" aria-label="Abrir configurações">⚙</button><button class="avatar" data-avatar data-screen="profile-screen" aria-label="Abrir perfil">DM</button></div>
+      </header>
+      <div class="progress-card"><div><strong>Seu progresso de hoje</strong><span>Você tomou 1 de 4 medicamentos</span></div><b>25%</b></div>
+      <div class="section-heading"><h2>Medicamentos de Hoje</h2><button class="icon-button" data-action="add" aria-label="Adicionar medicamento">+</button></div>
+      <div id="today-list" class="med-list"></div>
+      <button class="floating-button" data-action="add" aria-label="Adicionar medicamento">+</button>
+      <nav class="bottom-nav" aria-label="Navegação principal"><button class="nav-item selected" data-screen="home-screen">◷<span>Hoje</span></button><button class="nav-item" data-screen="history-screen">▣<span>Histórico</span></button></nav>
+    </section>
+
+    <section id="detail-screen" class="screen app-screen" aria-labelledby="detail-title">
+      <header class="inner-header"><button class="back-button" data-screen="home-screen" aria-label="Voltar">‹</button><div><p class="eyebrow">Detalhes do</p><h1 id="detail-title">Remédio</h1></div></header>
+      <div id="detail-content"></div>
+      <nav class="bottom-nav"><button class="nav-item selected" data-screen="home-screen">◷<span>Hoje</span></button><button class="nav-item" data-screen="history-screen">▣<span>Histórico</span></button></nav>
+    </section>
+
+    <section id="add-screen" class="screen app-screen" aria-labelledby="add-title">
+      <header class="inner-header"><button class="back-button" data-screen="home-screen" aria-label="Voltar">‹</button><div><p class="eyebrow">Novo Remédio</p><h1 id="add-title">Adicionar</h1></div></header>
+      <p class="muted intro-copy">Cadastre todos os detalhes importantes do seu medicamento.</p>
+      <form id="add-form" class="form-stack"><label>Nome do Remédio<input name="name" required placeholder="Ex: Paracetamol" /></label><label>Como tomar? (Dosagem)<input name="dose" required placeholder="Ex: 1 comprimido, 10 gotas..." /></label><label>Quando tomar? <span class="label-hint">(Frequência)</span><select name="frequency"><option>Todo Dia</option><option>Semanal</option><option>Escolher dias</option></select></label><label>Qual hora?<input id="med-time-input" name="time" type="time" required /></label><label>Instruções importantes<textarea name="instructions" rows="3" placeholder="Ex: Tomar com água, após refeição..."></textarea></label><button class="primary-button" type="submit">Salvar Medicamento</button></form>
+      <nav class="bottom-nav"><button class="nav-item selected" data-screen="home-screen">◷<span>Hoje</span></button><button class="nav-item" data-screen="history-screen">▣<span>Histórico</span></button></nav>
+    </section>
+
+    <section id="profile-screen" class="screen app-screen" aria-labelledby="profile-title">
+      <header class="inner-header"><button class="back-button" data-screen="home-screen" aria-label="Voltar">‹</button><div><p class="eyebrow">Minha conta</p><h1 id="profile-title">Informações pessoais</h1></div></header>
+      <div class="profile-photo-area"><div class="profile-avatar-large" data-profile-avatar>DM</div><label class="photo-button">Alterar foto<input id="profile-edit-image" type="file" accept="image/png,image/jpeg,image/webp" /></label></div>
+      <form id="profile-form" class="form-stack profile-form"><label>Nome completo<input name="name" required /></label><label>CPF ou e-mail<input name="contact" required /></label><label>Data de nascimento<input name="birthDate" type="date" required /></label><button class="primary-button" type="submit">Salvar alterações</button></form>
+      <button class="outline-button profile-settings-link" data-screen="settings-screen">Abrir configurações</button>
+      <nav class="bottom-nav"><button class="nav-item" data-screen="home-screen">◷<span>Hoje</span></button><button class="nav-item" data-screen="history-screen">▣<span>Histórico</span></button></nav>
+    </section>
+
+    <section id="settings-screen" class="screen app-screen" aria-labelledby="settings-title">
+      <header class="inner-header"><button class="back-button" data-screen="home-screen" aria-label="Voltar">‹</button><div><p class="eyebrow">Preferências</p><h1 id="settings-title">Configurações básicas</h1></div></header>
+      <div class="settings-list"><div class="setting-row"><div><strong>Tamanho da letra</strong><span>Altere somente o tamanho dos textos</span></div><div class="font-controls"><button data-font="decrease" aria-label="Diminuir letra">A−</button><span id="font-size-label">Normal</span><button data-font="increase" aria-label="Aumentar letra">A+</button></div></div><div class="setting-row"><div><strong>Modo escuro</strong><span>Reduza o brilho para usar à noite</span></div><button class="switch" data-setting="dark-mode" role="switch" aria-checked="false" aria-label="Ativar modo escuro"><span></span></button></div><div class="setting-row"><div><strong>Lembretes</strong><span>Receba avisos dos horários dos remédios</span></div><button class="switch active" data-setting="reminders" role="switch" aria-checked="true" aria-label="Ativar lembretes"><span></span></button></div><div class="setting-row"><div><strong>Dados salvos</strong><span>Seus dados ficam armazenados neste navegador</span></div><span class="storage-status">Ativo</span></div></div>
+      <button class="outline-button profile-settings-link" data-screen="profile-screen">Ver informações pessoais</button>
+      <nav class="bottom-nav"><button class="nav-item" data-screen="home-screen">◷<span>Hoje</span></button><button class="nav-item" data-screen="history-screen">▣<span>Histórico</span></button></nav>
+    </section>
+
+    <section id="history-screen" class="screen app-screen" aria-labelledby="history-title">
+      <header class="topbar"><div><p class="eyebrow">Seu Histórico</p><h1 id="history-title">Acompanhe sua rotina de saúde</h1></div><div class="header-actions"><button class="settings-button" data-screen="settings-screen" aria-label="Abrir configurações">⚙</button><button class="avatar" data-avatar data-screen="profile-screen" aria-label="Abrir perfil">DM</button></div></header>
+      <div class="month-picker"><button data-calendar="previous" aria-label="Mês anterior">‹</button><strong id="current-month">Mês atual</strong><button data-calendar="next" aria-label="Próximo mês">›</button></div>
+      <div class="calendar"><div class="weekdays"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div id="calendar-days" class="days"></div><p id="selected-date" class="selected-date">24 de outubro de 2024</p></div>
+      <h2 class="history-heading">Atividades Recentes</h2><div id="history-list" class="activity-list"></div>
+      <nav class="bottom-nav"><button class="nav-item" data-screen="home-screen">◷<span>Hoje</span></button><button class="nav-item selected" data-screen="history-screen">▣<span>Histórico</span></button></nav>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
